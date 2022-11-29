@@ -8,22 +8,48 @@ date: "2022-11-29"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+```{r}
+library(readxl)
 ```
 
-## Including Plots
+## Section 1
 
-You can also embed plots, for example:
+```{r}
+df <- read_excel("covid_data.xlsx")
+# renaming columns:
+colnames(df)[1] = "hours_before"
+colnames(df)[2] = "hours_after"
+colnames(df)[3] = "school"
+colnames(df)[4] = "job"
+colnames(df)[5] = "music"
+colnames(df)[6] = "family_friends"
+colnames(df)[7] = "games"
+colnames(df)[8] = "movies_TV"
+colnames(df)[9] = "other"
+colnames(df)[10] = "devices"
+colnames(df)[11] = "wifi"
+colnames(df)[12] = "covid_access"
+colnames(df)[13] = "covid_interruption"
+colnames(df)[14] = "school"
+# dropping first row
+df <- df[-1,]
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+demograph<-data.frame(#country=factor(df$Q2),
+age=factor(df$Q3),
+work.student=(df$Q31_1),
+work.full=(df$Q31_2),
+work.part=(df$Q31_3),
+work.homemaker=(df$Q31_4),
+work.dont=(df$Q31_5),
+work.other=(df$Q31_6),
+areaType=factor(df$Q34),
+lived.alone=(df$Q20_1),
+lived.friends=(df$Q20_2),
+lived.roommates=(df$Q20_3),
+lived.family=(df$Q20_4),
+lived.other=(df$Q20_5),
+n.cohab=factor(df$Q44),
+devices=factor(df$Q33),
+wifi=factor(df$Q32),
+gender=factor(df$Q4))
 ```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
