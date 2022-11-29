@@ -30,11 +30,10 @@ colnames(df)[10] = "devices"
 colnames(df)[11] = "wifi"
 colnames(df)[12] = "covid_access"
 colnames(df)[13] = "covid_interruption"
-colnames(df)[14] = "school"
 # dropping first row
 df <- df[-1,]
 
-demograph<-data.frame(#country=factor(df$Q2),
+demograph<-data.frame(country=factor(df$Q2),
 age=factor(df$Q3),
 work.student=(df$Q31_1),
 work.full=(df$Q31_2),
